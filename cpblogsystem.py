@@ -14,7 +14,7 @@ def newpost(override_overwriting):
                 }
             </style>
         </head><body>
-        <div class="blog" style="padding-left: 80px; padding-right: 80px; line-height: 44px;"><p>"""
+        <div class="blog" style="padding-left: 80px; padding-right: 80px;"><p>"""
     footertext = """</p>
     </div>
     </body>
