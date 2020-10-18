@@ -11,7 +11,7 @@ xhttp.onreadystatechange = function() {
             }
             var blog=document.getElementById("blog");
             var currentelementsplit=blogtable[blogtable.length-i-1].split("_");
-            blog.innerHTML+='<figure style="display: inline-block;"><a href="/blog/'+currentelementsplit[0]+'.html'+
+            blog.innerHTML+='<figure style="display: inline-block;"><a href="/blog/'+currentelementsplit[1]+'.html'+
             '"><img style="vertical-align: top;" src="'+iconpath+'" alt="blogicon" height="150px"></img></a>'+
             '<figcaption style="color:black; text-align: center;">'+currentelementsplit[1]+'<br>'+currentelementsplit[0]+
             '</figcaption></figure>';
