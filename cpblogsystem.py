@@ -1,4 +1,9 @@
 import os
+from graphics import *
+
+window = GraphWin("cpblogsystem", 500, 500)
+menustate = "mainmenu"
+
 def newpost(override_overwriting):
     postdate = input("Enter date of post: ")
     postname = input("Enter name of post: ")
@@ -59,21 +64,57 @@ def delpost():
     print("Deleted!")
     blogtable.close()
 
-def mainmenu():
-    print("""cpblogsystem
-    1. New post
-    2. Delete post
-    3. Edit post
-    4. Quit""")
-    _x = str(input("?"))
-    if _x == "1":
-        newpost(False)
-    elif _x == "2":
-        delpost()
-    elif _x == "3":
-        newpost(True)
-    elif _x == "4":
-        exit()
+def drawmenu():
+    global menustate
+    if menustate=="mainmenu":
+        text = Text(Point(250,250),"""1. New Post
+2. Delete Post
+3. Edit Post
+4. Quit""")
+        text.draw(window)
+        while True:
+            key = window.getKey()
+            if key == "1":
+                menustate="newpost"
+                text.undraw()
+                drawmenu()
+            elif key == "2":
+                menustate="delpost"
+                text.undraw()
+                drawmenu()
+            elif key == "3":
+                menustate="editpost"
+                text.undraw()
+                drawmenu()
+            elif key == "4":
+                break
+    if menustate=="newpost":
+        text = Text(Point(100,250),"""Name of post:
+Date of post: """)
+        text.draw(window)
 
-while True:
-    mainmenu()
+        box1 = Entry(Point(250,250),10)
+        box1.draw(window)
+        box2 = Entry(Point(250,300),10)
+        box2.draw(window)
+        submitbox = Rectangle(Point(125,350),Point(375,450))
+        submitbox.draw(window)
+        submitbox.setFill("blue")
+        submittext = Text(Point(250,400),"Submit")
+        submittext.draw(window)
+        submittext.setTextColor("white")
+        while True:
+            mouseclick = window.getMouse()
+            if mouseclick.getY() > 350:
+                box1text = box1.getText()
+                box2text = box2.getText()
+                print(str(box1text)+str(box2text))
+                text.undraw()
+                box1.undraw()
+                box2.undraw()
+                submitbox.undraw()
+                submittext.undraw()
+                menustate="mainmenu"
+                drawmenu()
+                break
+drawmenu()
